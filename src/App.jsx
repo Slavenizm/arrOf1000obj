@@ -20,12 +20,16 @@ function App() {
   const handleClickChangeList =()=>setchangerOfList((prevState)=>!prevState)
 
   const handleClickAddToStartList =()=>setarrOfElements((prevArr)=>{return [{id:Date.now(), value:Date.now()/777},...prevArr]})
+
   const handleClickAddToEndList =()=>setarrOfElements((prevArr)=>{return [...prevArr,{id:Date.now(), value:Date.now()/777}]})
+  
   const handleClickDeleteFirst =()=>setarrOfElements((prevArr)=>prevArr.slice(1))
   const handleClickMixList =()=>setarrOfElements((prevArr)=>{
     const copy =[...prevArr]
     for (let i = copy.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(copy.length+1))
+      const j = Math.floor(Math.random()*(copy.length-1))
+
+      return 
     }
   
   
