@@ -8,13 +8,11 @@ function ListWithKey({ items }) {
         <h3>ListWithKey</h3>
         <ul>
             {items.map((item) =>
-                <>
-                    <li key={item.id}>{item.value}
-                        <input onChange={inputHandler} value={inputData}></input>
-                    </li>
 
-
-                </>)}
+                <li key={item.id}>{item.value}
+                    <input onChange={inputHandler} ></input>
+                </li>
+            )}
 
 
         </ul>

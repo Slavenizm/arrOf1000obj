@@ -16,31 +16,39 @@ function App() {
   const [arrOfElements, setarrOfElements] = useState(generateItems)
   const [changerOfList, setchangerOfList] = useState(true)
 
-  
-  const handleClickChangeList =()=>setchangerOfList((prevState)=>!prevState)
 
-  const handleClickAddToStartList =()=>setarrOfElements((prevArr)=>{return [{id:Date.now(), value:Date.now()/777},...prevArr]})
+  const handleClickChangeList = () => setchangerOfList((prevState) => !prevState)
 
-  const handleClickAddToEndList =()=>setarrOfElements((prevArr)=>{return [...prevArr,{id:Date.now(), value:Date.now()/777}]})
-  
-  const handleClickDeleteFirst =()=>setarrOfElements((prevArr)=>prevArr.slice(1))
-  const handleClickMixList =()=>setarrOfElements((prevArr)=>{
-    const copy =[...prevArr]
-    for (let i = copy.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(copy.length-1))
+  const handleClickAddToStartList = () => setarrOfElements((prevArr) => { return [{ id: Date.now(), value: Date.now() / 777 }, ...prevArr] })
 
-      return 
+  const handleClickAddToEndList = () => setarrOfElements((prevArr) => { return [...prevArr, { id: Date.now(), value: Date.now() / 777 }] })
+
+  const handleClickDeleteFirst = () => setarrOfElements((prevArr) => prevArr.slice(1))
+  const handleClickMixList = () => setarrOfElements((prevArr) => {
+    const copy = [...prevArr]
+    for (let i = copy.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+
+
     }
+    return copy
+
+  })
+  const handleClickUpdateRandom = () => setarrOfElements((prevArr) => { 
+    const copy = [...prevArr]
+    const randomIndex = [Math.floor(Math.random() * copy.length)];
+    copy[randomIndex] ={...copy[randomIndex],value:'значение обновилось!'}
+    return copy
   
   
   })
-  const handleClickUpdateRandom =()=>setarrOfElements((prevArr)=>{return Math.random()*(prevArr.length-1)})
-// console.log(arrOfElements)
-// console.log(generateItems());
+  // console.log(arrOfElements)
+  // console.log(generateItems());
 
   return <>
     <h1>Привет</h1>
-    {changerOfList?<ListWithKey items={arrOfElements}></ListWithKey>: <ListWithoutKey items={arrOfElements}/>}
+    {changerOfList ? <ListWithKey items={arrOfElements}></ListWithKey> : <ListWithoutKey items={arrOfElements} />}
 
     <button onClick={handleClickChangeList}>Поменять списки</button>
     <button onClick={handleClickAddToStartList}>добавить элемент в начало</button>
