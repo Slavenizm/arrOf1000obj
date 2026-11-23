@@ -37,7 +37,7 @@ function App() {
   })
   const handleClickUpdateRandom = () => setarrOfElements((prevArr) => { 
     const copy = [...prevArr]
-    const randomIndex = [Math.floor(Math.random() * copy.length)];
+    const randomIndex = Math.floor(Math.random() * copy.length);
     copy[randomIndex] ={...copy[randomIndex],value:'значение обновилось!'}
     return copy
   
